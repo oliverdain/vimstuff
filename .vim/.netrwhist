@@ -1,0 +1,5 @@
+let g:netrw_dirhistmax  =10
+let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_1='/Users/oliver/Documents/code/main/nlp/proofOfConcept/avant'
+let g:netrw_dirhist_2='/Users/oliver/Documents/code/main/nlp/proofOfConcept/avant/pythonSkLearn'
+let g:netrw_dirhist_3='/Users/oliver/.signing'
