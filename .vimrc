@@ -456,7 +456,8 @@ au! BufNewFile * :call OnNewFile()
 " Configs for multiple languages
 " highlight characters after column 80
 hi TooManyChars guifg=White guibg=Red ctermfg=White ctermbg=Red
-autocmd FileType cpp,c,python,javascript match TooManyChars /\%>80v.\+/
+autocmd FileType python,javascript match TooManyChars /\%>80v.\+/
+autocmd FileType cpp,c,python,javascript match TooManyChars /\%>120v.\+/
 autocmd FileType java match TooManyChars /\%>120v.\+/
 " Quick command to turn off this highlighting. Handy when editing files that
 " don't conform to the 80 char limit.
@@ -528,6 +529,10 @@ let g:user_emmet_expandabbr_key = '<leader>e'
 " Add ability to switch from .h to .cc quickly
 command! Toh :e %:r.h
 command! Toc :e %:r.cc
+autocmd FileType c,cpp setlocal et ts=2 sw=2 tw=120 
+" spell check is smart enough to only check spelling in comments and strings,
+" so turn that on for C++ code.
+autocmd FileType c,cpp setlocal spell
 
 """"
 " clang_complete - auto complete stuff for C++
@@ -538,7 +543,7 @@ let g:clang_complete_auto=1
 let g:clang_complete_copen=0
 " Use the clang *library* instead of the executable. Much faster.
 let g:clang_use_library = 1
-let g:clang_library_path = '/usr/lib/llvm-3.2/lib'
+let g:clang_library_path = '/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib'
 " Use C++11 with clang_complete
 let g:clang_user_options='-std=c++0x -x c++' 
 " Hitting F2 will show clang_complete errors for debugging purposes
@@ -567,9 +572,9 @@ au BufNewFile,BufRead *.R     set syntax=r
 
 " If editing a subversion commmit file automatically go to the top of the file
 " and enter insert mode
-au BufNewFile,BufRead *svn-commit*tmp  :1 | :start!
+au BufNewFile,BufRead *svn-commit*tmp  :1
 " Same for git commits
-au BufNewFile,BufRead *.git/COMMIT_EDITMSG :1 | :start
+au BufNewFile,BufRead *.git/COMMIT_EDITMSG :1
 " text files are limited to 80 character lines
 autocmd FileType text setlocal textwidth=80
 
